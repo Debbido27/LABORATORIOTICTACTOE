@@ -9,16 +9,17 @@ public class TICTACTOEDAVID extends javax.swing.JFrame {
      */
      JLabel LBS [][] = new JLabel[3][3];
       String Turno="x";
-      int VS[][]={
-          (1,2,3),
-          (4,5,6),
-          (7,8,9),
-          (2,5,8),
-          (3,6,9)
-          
-          
-          
-      }
+      int VS[][] = {
+    {1, 2, 3},
+    {4, 5, 6}, 
+    {7, 8, 9}, 
+    {1, 4, 7}, 
+    {2, 5, 8}, 
+    {3, 6, 9}, 
+    {1, 5, 9}, 
+    {3, 5, 7}  
+};
+
     public TICTACTOEDAVID() {
        
         
@@ -26,6 +27,8 @@ public class TICTACTOEDAVID extends javax.swing.JFrame {
 
         // Inicializamos los componentes de la interfaz gráfica
         initComponents();
+   
+  
 
         // Asignamos los JLabels de la interfaz a las posiciones del arreglo bidimensional LBS
         LBS[0][0] = jLabel7;
@@ -284,9 +287,37 @@ public class TICTACTOEDAVID extends javax.swing.JFrame {
 }
 
 
-    public void comprobarganador(){
-        
+    public void comprobarganador() {
+    
+    for (int i = 0; i < VS.length; i++) {
+       
+        int fila1 = (VS[i][0] - 1) / 3;
+        int col1 = (VS[i][0] - 1) % 3;
+        int fila2 = (VS[i][1] - 1) / 3;
+        int col2 = (VS[i][1] - 1) % 3;
+        int fila3 = (VS[i][2] - 1) / 3;
+        int col3 = (VS[i][2] - 1) % 3;
+
+       
+        if (LBS[fila1][col1].getText().equals("x") &&
+            LBS[fila2][col2].getText().equals("x") &&
+            LBS[fila3][col3].getText().equals("x")) {
+
+         
+            System.out.println("¡Gana el jugador X!");
+            return; 
+        }
+
+        if (LBS[fila1][col1].getText().equals("o") &&
+            LBS[fila2][col2].getText().equals("o") &&
+            LBS[fila3][col3].getText().equals("o")) {
+
+            System.out.println("¡Gana el jugador O!");
+            return; 
+        }
     }
+}
+
     
     public void CAMBIAR(){
         if (Turno.equals("x")){
